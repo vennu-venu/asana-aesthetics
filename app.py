@@ -37,7 +37,7 @@ def gen_processed_video_frames():
           frame = np.array(frame)
           global predicted_pose
           predicted_pose = mapper(asana_classification.classify(frame))
-          time.sleep(0.5)
+        #   time.sleep(0.5)
           ret, buffer = cv2.imencode('.jpg', frame)
           frame = buffer.tobytes()
           yield (b'--frame\r\n'
