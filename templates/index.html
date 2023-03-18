@@ -1,15 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+  <head>
+    <title>Asana Aesthetics</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        text-align: center;
+      }
+      h1 {
+        font-size: 3em;
+        margin: 20px auto;
+        padding: 10px;
+        border-bottom: 4px rgba(0, 0, 0, 0.5) solid;
+      }
+      .videos {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+      img {
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+      #pose {
+        font-size: 2em;
+        margin: 20px auto;
+        width: 80vw;
+        padding: 20px;
+        background-color: rgba(0, 128, 0, 0.5);
+        border-radius: 8px;
+      }
+    </style>
+  </head>
 
-<head>
-  <title>Asana Aesthetics</title>
-</head>
+  <body>
+    <h1>Asana Aesthetics</h1>
+    <div class="videos">
+      <img src="{{ url_for('video_feed') }}" />
+      <img
+        src="{{ url_for('processed_video_feed') }}"
+        width="640px"
+        height="480px"
+      />
+    </div>
+    <div id="pose"></div>
+    <script>
+      function getVariableValue() {
+        fetch("/get-pose")
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            let pose = data.pose;
+            document.getElementById("pose").innerHTML = pose;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
 
-<body>
-  <h1>Asana Aesthetics</h1>
-  <img src="{{ url_for('video_feed') }}">
-  <img src="{{ url_for('processed_video_feed') }}" width="640px" height="480px">
-  <h4>{{ pose }}</h4>
-</body>
-
+      setInterval(getVariableValue, 1000); // update the variable value every 1 second (1000 ms)
+    </script>
+  </body>
 </html>
