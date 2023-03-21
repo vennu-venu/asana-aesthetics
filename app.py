@@ -40,7 +40,6 @@ def gen_processed_video_frames():
             frame = np.array(frame)
             global predicted_pose
             predicted_pose = mapper(asana_classification.classify(frame))
-        #   time.sleep(0.5)
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
@@ -60,9 +59,33 @@ def mapper(pose):
         return "Warrior"
 
 
+asanasDetails = {
+    'down_dog': {
+        'title': "Down Dog",
+        'imagePath': '../static/img/down_dog.png'
+    },
+    'goddess': {
+        'title': "Goddess",
+        'imagePath': '../static/img/goddess.png'
+    },
+    'plank': {
+        'title': "Plank",
+        'imagePath': '../static/img/plank.png'
+    },
+    'tree': {
+        'title': "Tree",
+        'imagePath': '../static/img/tree.png'
+    },
+    'warrior_2': {
+        'title': "Warrior 2",
+        'imagePath': '../static/img/warrior_2.png'
+    }
+}
+
+
 @app.route('/home')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', asanas = asanasDetails)
 
 
 @app.route('/asanas')
