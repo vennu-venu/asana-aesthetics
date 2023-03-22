@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="tutorial_row">
+  <p id="selected-asana" class="tutorial_title"></p>
+  <div class="details_card">
+    <div>
+      <div id="hours" class="time_block"></div>
+      <small id="hours-label">Hours</small>
+    </div>
+    <div>
+      <div id="minutes" class="time_block"></div>
+      <small id="minutes-label">Minutes</small>
+    </div>
+    <div>
+      <div id="seconds" class="time_block"></div>
+      <small id="seconds-label">Seconds</small>
+    </div>
+    <div>
+      <div id="calories" class="time_block">20</br>Kcal</div>
+      <small id="seconds-label">Calories</small>
+    </div>
+
+  </div>
+</div>
+
+<script src="../static/js/selected-asana-fetcher.js"></script>
+<script src="../static/js/timer.js"></script>
+
+{% endblock %}

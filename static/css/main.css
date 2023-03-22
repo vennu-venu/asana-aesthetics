@@ -192,6 +192,42 @@ body {
   font-size: 2em;
   color: rgb(40, 142, 152)
 }
+.tutorial_row {
+  animation: fadeInDown;
+  animation-duration: 1.2s;
+}
+.tutorial_title {
+  font-size: 3.2rem;
+  font-weight: 200;
+  text-align: center;
+  padding: 20px 10px;
+  margin: 10px 0px;
+}
+.details_card {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 400px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.details_card div {
+  background-color: rgb(40, 142, 152);
+  color: white;
+  margin: 10px 0px;
+  width: 20%;
+  font-size: 2rem;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+small {
+  font-size: 0.4em;
+}
 
 @media (max-width: 768px) {
   .title_row,
@@ -205,6 +241,7 @@ body {
     width: 100vw;
   }
   .title_row div,
+
   .asana_row div {
     width: 100%;
   }
