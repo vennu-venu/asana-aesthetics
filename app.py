@@ -61,7 +61,7 @@ def mapper(pose):
 
 asanasDetails = {
     'down_dog': {
-        'title': "Down Dog",
+        'title': "Downward Facing Dog",
         'imagePath': '../static/img/down_dog.png'
     },
     'goddess': {
