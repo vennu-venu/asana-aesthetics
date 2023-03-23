@@ -2,7 +2,6 @@ from flask import Flask, jsonify, render_template, Response, Request, stream_wit
 import cv2
 import numpy as np
 import mediapipe as mp
-import time
 import data_preprocessing
 import asana_classification
 from PIL import Image
@@ -105,7 +104,7 @@ def asanas():
 def tutorial(asana):
     global selected_asana
     selected_asana = asana
-    return render_template('tutorial.html')
+    return render_template('tutorial.html', selected_asana = asanasDetails[selected_asana]["title"])
 
 
 @app.route('/video_feed')

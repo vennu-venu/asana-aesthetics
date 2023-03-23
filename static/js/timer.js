@@ -51,6 +51,7 @@ function stopWatch() {
     let secondString = seconds;
     let minuteString = minutes;
     let hoursString = hours;
+
     if (milliSeconds < 10) {
       milliSecondString = "0" + milliSecondString;
     }
@@ -64,6 +65,24 @@ function stopWatch() {
       hoursString = "0" + hoursString;
     }
 
+    if (seconds === 1) {
+      document.getElementById("seconds-label").innerHTML = "Second";
+    } else {
+      document.getElementById("seconds-label").innerHTML = "Seconds";
+    }
+
+    if (minutes === 1) {
+      document.getElementById("minutes-label").innerHTML = "Minute";
+    } else {
+      document.getElementById("minutes-label").innerHTML = "Minutes";
+    }
+
+    if (hours === 1) {
+      document.getElementById("hours-label").innerHTML = "Hour";
+    } else {
+      document.getElementById("hours-label").innerHTML = "Hours";
+    }
+
     document.getElementById("seconds").innerHTML = secondString;
     document.getElementById("minutes").innerHTML = minuteString;
     document.getElementById("hours").innerHTML = hoursString;
@@ -72,4 +91,4 @@ function stopWatch() {
   }
 }
 
-start()
+start();
