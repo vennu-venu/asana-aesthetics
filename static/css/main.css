@@ -12,30 +12,33 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(50, 50, 50, 0.8);
 }
-.__title_row {
+.title_row {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  height: 90vh;
+  height: 100vh;
   background-color: rgb(40, 142, 152, 0.5);
 }
-.__home_img {
+.home_img {
   width: 72%;
   display: block;
   margin: auto;
   animation: fadeInDown;
   animation-duration: 1.2s;
 }
-.__home_title::before {
+.home_title::before,
+.asana_card::before {
   transform: scaleX(0);
   transform-origin: bottom right;
 }
-.__home_title:hover::before {
+.home_title:hover::before,
+.asana_card:hover::before {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-.__home_title::before {
+.home_title::before,
+.asana_card::before {
   content: " ";
   display: block;
   position: absolute;
@@ -46,9 +49,12 @@ body {
   inset: 0 0 0 0;
   background: rgb(40, 142, 152, 0.8);
   z-index: -1;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
 }
-.__home_title {
+.asana_card::before {
+  background-color: rgb(40, 142, 152, 0.5);
+}
+.home_title {
   position: relative;
   font-size: 4rem;
   font-weight: 200;
@@ -56,17 +62,17 @@ body {
   animation: fadeInDown;
   animation-duration: 1.2s;
 }
-.__title_row div,
-.__asana_row div {
+.title_row div,
+.asana_row div {
   width: 48%;
   padding: 20px;
 }
-.__home_text {
+.home_text {
   text-align: left;
   animation: fadeInDown;
   animation-duration: 1.2s;
 }
-.__home_button {
+.home_button, .asana_button {
   border: none;
   padding: 15px 40px;
   font-size: 1.2rem;
@@ -75,16 +81,24 @@ body {
   animation: fadeInDown;
   animation-duration: 1.2s;
   background-color: rgb(40, 142, 152);
+  text-decoration: none;
 }
-.__home_button:hover {
-  padding: 15px 50px;
+.asana_button {
+  padding: 10px 20px;
+  font-size: 0.9em;
+  color: white;
+  animation: none;
+  margin-top: 10px;
+}
+.home_button:hover, .asana_button:hover {
+  padding: 10px 30px;
   transition-duration: 0.6s;
 }
-.__home_button:not(:hover) {
-  padding: 15px 40px;
+.home_button:not(:hover), .asana_button:not(:hover) {
+  padding: 10px 20px;
   transition-duration: 0.6s;
 }
-.__asana_row {
+.asana_row {
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -96,46 +110,151 @@ body {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 10px;
 }
-.__asana_row:hover {
+.asana_row:hover {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
   background-color: rgb(40, 142, 152, 0.2);
   transition-duration: 0.6s;
 }
-.__asana_title {
+.asana_row:hover .asana_title {
+  animation: bounce;
+  animation-duration: 1.5s;
+}
+.asana_row:hover .asana_img {
+  animation: pulse;
+  animation-duration: 1.5s;
+}
+.asana_title {
   font-size: 2rem;
   font-weight: 600;
 }
-.__asana_img {
+.asana_img {
   width: 64%;
   display: block;
   margin: auto;
 }
-.__odd_numbered_row {
+.odd_numbered_row {
   flex-direction: row-reverse;
   text-align: right;
 }
-.__even_numbered_row {
+.even_numbered_row {
   text-align: left;
+}
+.asanas_title {
+  font-size: 4rem;
+  font-weight: 200;
+  text-align: center;
+  margin: 40px auto;
+}
+.asanas_cards {
+  width: 90vw;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.asana_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 30%;
+  height: auto;
+  min-width: 300px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.asana_card:hover .asana_card_img, .asana_card:hover .asana_card_title {
+  animation: pulse;
+  animation-duration: 1.5s;
+}
+.asana_card:hover .asana_card_title {
+  color: white;
+  transition: ease 0.5s;
+}
+.asana_card_img {
+  width: 64%;
+  display: block;
+  margin: 25px auto;
+}
+.asana_card_title {
+  font-size: 2rem;
+  font-weight: 200;
+  text-align: center;
+}
+.starting_letter-1 {
+  font-size: 2em;
+  color: rgb(220, 80, 132);
+}
+.starting_letter-2 {
+  font-size: 2em;
+  color: rgb(40, 142, 152)
+}
+.tutorial_row {
+  animation: fadeInDown;
+  animation-duration: 1.2s;
+}
+.tutorial_title {
+  font-size: 3.2rem;
+  font-weight: 200;
+  text-align: center;
+  padding: 20px 10px;
+  margin: 10px 0px;
+}
+.details_card {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 400px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.details_card div {
+  background-color: rgb(40, 142, 152);
+  color: white;
+  margin: 10px 0px;
+  width: 20%;
+  font-size: 2rem;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+small {
+  font-size: 0.4em;
 }
 
 @media (max-width: 768px) {
-  .__title_row,
-  .__asana_row {
+  .title_row,
+  .asana_row {
     flex-direction: column;
     height: auto;
     width: 95vw;
-    margin: auto
+    margin: auto;
   }
-  .__title_row div,
-  .__asana_row div {
+  .title_row {
+    width: 100vw;
+  }
+  .title_row div,
+
+  .asana_row div {
     width: 100%;
   }
-  .__asana_row {
+  .asana_row {
     text-align: center;
   }
-  .__home_button {
+  .home_button, .asana_button {
     display: block;
+    margin: auto;
+  }
+  .asana_card {
+    min-width: none;
+    width: 100%;
     margin: auto;
   }
 }

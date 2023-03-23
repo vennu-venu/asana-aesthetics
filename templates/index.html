@@ -1,98 +1,35 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="__title_row">
+<div class="title_row">
   <div>
     <img
-      class="__home_img"
+      class="home_img"
       src="../static/img/asana.png"
       alt="asana_aesthetics"
     />
   </div>
   <div>
-    <h2 class="__home_title">Asana</br>Aesthetics</h2>
-    <p class="__home_text">
+    <h2 class="home_title">Asana</br>Aesthetics</h2>
+    <p class="home_text">
       True yoga is not about the shape of your body, but the shape of your life.
       Yoga is not to be performed; yoga is to be lived. Yoga doesn’t care about
       what you have been; yoga cares about the person you are becoming. Yoga is
       designed for a vast and profound purpose, and for it to be truly called
       yoga, its essence must be embodied.
     </p>
-    <a href="asanas"><button class="__home_button">Get started</button></a>
+    <a href="asanas"><button class="home_button">Get started</button></a>
   </div>
 </div>
 
-<div class="__asana_row __odd_numbered_row">
-  <div>
-    <img class="__asana_img" src="../static/img/down_dog.png" alt="down_dog" />
-  </div>
-  <div>
-    <h2 class="__asana_title">Down Dog Asana</h2>
-    <p class="__asana_description">
-      The pose has the head down, ultimately touching the floor, with the weight
-      of the body on the palms and the feet. The arms are stretched straight
-      forward, shoulder width apart; the feet are a foot apart, the legs are
-      straight, and the hips are raised as high as possible.
-    </p>
-  </div>
-</div>
+<h2 class="asanas_title"><span class="starting_letter-2">A</span>sanas</h2>
 
-<div class="__asana_row __even_numbered_row">
-  <div>
-    <img class="__asana_img" src="../static/img/goddess.png" alt="down_dog" />
+<div class="asanas_cards">
+  {% for ind in asanas %}
+  <div class="asana_card">
+    <img class="asana_card_img" src="{{asanas[ind]['imagePath']}}" alt="">
+    <p class="asana_card_title">{{asanas[ind]["title"]}}</p>
   </div>
-  <div>
-    <h2 class="__asana_title">Goddess Asana</h2>
-    <p class="__asana_description">
-      Goddess Pose is a powerful squat, with your hips dipping down, not back.
-      This motion seriously tones your thighs, core, and back in addition to
-      providing an intense inner thigh, hip, and pelvic stretch. Ease into it
-      slowly and it's incredibly rewarding
-    </p>
-  </div>
-</div>
-
-<div class="__asana_row __odd_numbered_row">
-  <div>
-    <img class="__asana_img" src="../static/img/plank.png" alt="down_dog" />
-  </div>
-  <div>
-    <h2 class="__asana_title">Plank Asana</h2>
-    <p class="__asana_description">
-      The plank (also called a front hold, hover, or abdominal bridge) is an
-      isometric core strength exercise that involves maintaining a position
-      similar to a push-up for the maximum possible time .
-    </p>
-  </div>
-</div>
-
-<div class="__asana_row __even_numbered_row">
-  <div>
-    <img class="__asana_img" src="../static/img/tree.png" alt="down_dog" />
-  </div>
-  <div>
-    <h2 class="__asana_title">Tree Asana</h2>
-    <p class="__asana_description">
-      Tree pose or Vrikshasana is a balancing asana. It is one of the very few
-      standing poses in medieval hatha yoga, and remains popular in modern yoga
-      as exercise.
-    </p>
-  </div>
-</div>
-
-<div class="__asana_row __odd_numbered_row">
-  <div>
-    <img class="__asana_img" src="../static/img/warrior_2.png" alt="down_dog" />
-  </div>
-  <div>
-    <h2 class="__asana_title">Warrior 2 Asana</h2>
-    <p class="__asana_description">
-      Warrior two pose is the second of three related powerful standing postures
-      that improve strength and flexibility. In this pose, the legs are placed
-      in a lunge position with the forward knee at a 90 degree angle. The arms
-      stretch out in opposite directions, in alignment with the body, which is
-      facing forward.
-    </p>
-  </div>
+  {% endfor %}
 </div>
 
 {% endblock %}
