@@ -4,6 +4,7 @@ body {
 }
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-thumb {
   background: rgb(50, 50, 50, 0.8);
@@ -197,16 +198,17 @@ body {
   animation-duration: 1.2s;
 }
 .tutorial_title {
-  font-size: 3.2rem;
-  font-weight: 200;
-  text-align: center;
-  padding: 20px 10px;
-  margin: 10px 0px;
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: left;
+  padding: 20px 30px;
+  background-color: rgb(40, 142, 152);
+  color: white;
 }
 .details_card {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   width: 400px;
-  margin: auto;
+  margin: 10px auto;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -227,6 +229,33 @@ body {
 }
 small {
   font-size: 0.4em;
+}
+.tutorial_frames {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.video_frames {
+  width: 22vw;
+  height: 16vw;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 8px;
+}
+.tutorial_video {
+  width: 60vw;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 8px;
+}
+.tutorial_right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.danger-background {
+  background-color: rgb(156, 0, 0);
+}
+.success-background {
+  background-color: rgb(0, 150, 0);
 }
 
 @media (max-width: 768px) {
@@ -256,5 +285,23 @@ small {
     min-width: none;
     width: 100%;
     margin: auto;
+  }
+  .tutorial_frames {
+    flex-direction: column;
+    align-items: center ;
+    margin: auto;
+    gap: 10px;
+  }
+  .tutorial_video {
+    width: 95vw;
+  }
+  .tutorial_right {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
+  .video_frames {
+    width: 44vw;
+    height: 32vw;
   }
 }

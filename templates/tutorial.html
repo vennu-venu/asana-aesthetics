@@ -1,29 +1,36 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="tutorial_row">
-  <p id="selected-asana" class="tutorial_title"></p>
+  <p class="tutorial_title" id="selected-asana">{{selected_asana}} Asana</p>
   <div class="details_card">
     <div>
       <div id="hours" class="time_block"></div>
-      <small id="hours-label">Hours</small>
+      <small id="hours-label"></small>
     </div>
     <div>
       <div id="minutes" class="time_block"></div>
-      <small id="minutes-label">Minutes</small>
+      <small id="minutes-label"></small>
     </div>
     <div>
       <div id="seconds" class="time_block"></div>
-      <small id="seconds-label">Seconds</small>
+      <small id="seconds-label"></small>
     </div>
     <div>
-      <div id="calories" class="time_block">0</div>
+      <div id="calories" class="time_block">20</br>Kcal</div>
       <small id="seconds-label">Calories</small>
     </div>
 
+<div class="tutorial_frames">
+  <div class="tutorial_left">
+    <video class="tutorial_video" src="../static/img/demo.mp4" controls autoplay muted loop></video>
+  </div>
+  <div class="tutorial_right">
+    <img class="video_frames" src="{{ url_for('video_feed') }}" alt="" />
+    <img class="video_frames" src="{{ url_for('processed_video_feed') }}" alt="" />
   </div>
 </div>
 
-<script src="../static/js/selected-asana-fetcher.js"></script>
+<script src="../static/js/main.js"></script>
 <script src="../static/js/timer.js"></script>
 <script src="../static/js/calories-fetcher.js"></script>
 
