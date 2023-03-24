@@ -4,7 +4,7 @@ const getPredicedAsana = () => {
       return response.json();
     })
     .then((data) => {
-      let pose = data.predicted_pose;
+      let pose = data.predicted_asana;
       console.log(pose);
     })
     .catch((error) => {

@@ -17,6 +17,8 @@ predicted_asana = ""
 
 selected_asana = ""
 
+weight = 35
+
 
 def gen_frames():
     while True:
@@ -126,6 +128,11 @@ def get_predicted_asana():
 @app.route('/get-selected-asana')
 def get_selected_asana():
     return jsonify(selected_asana=asanasDetails[selected_asana]["title"])
+
+
+@app.route('/get-calories')
+def get_calories():
+    return jsonify(selected_asana=selected_asana,predicted_asana=predicted_asana,weight=weight)
 
 
 if __name__ == '__main__':
