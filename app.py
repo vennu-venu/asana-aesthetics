@@ -12,6 +12,8 @@ skeleton_extractor = data_preprocessing.SkeletonExtraction()
 
 camera = cv2.VideoCapture(0)
 
+weight = 40
+
 predicted_asana = ""
 
 selected_asana = ""
@@ -65,30 +67,42 @@ asanasDetails = {
     'downward-facing-dog': {
         'title': "Downward Facing Dog",
         'asana': "downward-facing-dog",
-        'imagePath': '../static/img/down_dog.png'
+        'imagePath': '../static/img/down_dog.png',
+        'METs':2.5
     },
     'goddess': {
         'title': "Goddess",
         'asana': "goddess",
-        'imagePath': '../static/img/goddess.png'
+        'imagePath': '../static/img/goddess.png',
+        'METs':2.5
     },
     'plank': {
         'title': "Plank",
         'asana': "plank",
-        'imagePath': '../static/img/plank.png'
+        'imagePath': '../static/img/plank.png',
+        'METs':4.0
     },
     'tree': {
         'title': "Tree",
         'asana': "tree",
-        'imagePath': '../static/img/tree.png'
+        'imagePath': '../static/img/tree.png',
+        'METs':2.5
     },
     'warrior-2': {
         'title': "Warrior 2",
         'asana': "warrior-2",
-        'imagePath': '../static/img/warrior_2.png'
+        'imagePath': '../static/img/warrior_2.png',
+        'METs':4.0
     }
 }
 
+asanaMETs = {
+    'Downward Facing Dog':2.5,
+    'Goddess':2.5,
+    'Plank':4.0,
+    'Tree': 2.5,
+    'Warrior-2':4.0
+}
 
 @app.route('/home')
 def index():
@@ -103,8 +117,8 @@ def asanas():
 @app.route('/tutorial/<asana>')
 def tutorial(asana):
     global selected_asana
-    selected_asana = asana
-    return render_template('tutorial.html', selected_asana = asanasDetails[selected_asana]["title"])
+    selected_asana = asanasDetails[asana]['title']
+    return render_template('tutorial.html', selected_asana=selected_asana)
 
 
 @app.route('/video_feed')
@@ -124,8 +138,12 @@ def get_predicted_asana():
 
 @app.route('/get-selected-asana')
 def get_selected_asana():
-    return jsonify(selected_asana=asanasDetails[selected_asana]["title"])
+    return jsonify(selected_asana=selected_asana)
 
+
+@app.route('/get-calories')
+def get_calories():
+    return jsonify(selected_asana=selected_asana,predicted_asana=predicted_asana,METs=asanaMETs[selected_asana],weight=weight)
 
 if __name__ == '__main__':
     app.run()

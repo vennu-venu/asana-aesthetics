@@ -14,11 +14,20 @@ const evaluate = () => {
         })
         .then((data) => {
           predicted_asana = data.predicted_asana;
-          if(predicted_asana !== selected_asana) {
-            document.getElementById('selected-asana').classList.add(['danger-background']);
-          }
-          else {
-            document.getElementById('selected-asana').classList.add(['success-background']);
+          if (predicted_asana !== selected_asana) {
+            document
+              .getElementById("selected-asana")
+              .classList.remove(["success-background"]);
+            document
+              .getElementById("selected-asana")
+              .classList.add(["danger-background"]);
+          } else {
+            document
+              .getElementById("selected-asana")
+              .classList.remove(["danger-background"]);
+            document
+              .getElementById("selected-asana")
+              .classList.add(["success-background"]);
           }
         })
         .catch((error) => {
