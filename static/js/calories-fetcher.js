@@ -1,5 +1,5 @@
 
-var asanasDetails = {
+var asanaMETs = {
     'downward-facing-dog':2.5,
     'goddess':2.5,
     'plank':4.0,
@@ -8,7 +8,7 @@ var asanasDetails = {
 }
 
 function caloriesPerSec(asana, weight) {
-    calPerSec = (asanasDetails[asana] * 3.5 * weight)/(200*60) 
+    calPerSec = (asanaMETs[asana] * 3.5 * weight)/(200*60) 
     return calPerSec
   }
 
