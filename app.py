@@ -5,6 +5,7 @@ import mediapipe as mp
 import data_preprocessing
 import asana_classification
 from PIL import Image
+from flask import request, redirect
 
 app = Flask(__name__)
 
@@ -12,7 +13,7 @@ skeleton_extractor = data_preprocessing.SkeletonExtraction()
 
 camera = cv2.VideoCapture(0)
 
-weight = 40
+weight = ""
 
 predicted_asana = ""
 
@@ -62,6 +63,12 @@ def mapper(asana):
         return "Warrior 2"
     return ""
 
+userDetails = {
+    'username': "",
+    'age': "",
+    'gender': '',
+    'weight': '',
+}
 
 asanasDetails = {
     'downward-facing-dog': {
@@ -108,10 +115,14 @@ asanaMETs = {
 def index():
     return render_template('index.html', asanas=asanasDetails)
 
-
 @app.route('/asanas')
 def asanas():
     return render_template('asanas.html')
+
+@app.route('/form')
+def form():
+    return render_template('form.html')
+
 
 
 @app.route('/tutorial/<asana>')
@@ -144,6 +155,17 @@ def get_selected_asana():
 @app.route('/get-calories')
 def get_calories():
     return jsonify(selected_asana=selected_asana,predicted_asana=predicted_asana,METs=asanaMETs[selected_asana],weight=weight)
+
+@app.route('/post-user-details', methods=["POST"])
+def post_user_details():
+    global weight 
+    weight = request.form['weight']
+    global userDetails
+    userDetails['username'] = request.form['username']
+    userDetails['age'] = request.form['age']
+    userDetails['gender'] = request.form['gender']
+    userDetails['weight'] = request.form['weight']
+    return redirect("/asanas")
 
 if __name__ == '__main__':
     app.run()
