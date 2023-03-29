@@ -38,10 +38,7 @@ def gen_processed_video_frames():
         if not success:
             break
         else:
-            frame = skeleton_extractor.getSkeleton(frame)
-            frame = data_preprocessing.resize_with_padding(Image.fromarray(
-                cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)).convert("L"), (224, 224))
-            frame = np.array(frame)
+            frame = data_preprocessing.Img2Skeleton(frame)
             global predicted_asana
             predicted_asana = mapper(asana_classification.classify(frame))
             ret, buffer = cv2.imencode('.jpg', frame)
@@ -67,7 +64,7 @@ userDetails = {
     'username': "",
     'age': "",
     'gender': '',
-    'weight': '',
+    'weight': 50,
 }
 
 asanasDetails = {
@@ -119,9 +116,9 @@ def index():
 def asanas():
     return render_template('asanas.html')
 
-@app.route('/form')
+@app.route('/user-details-form')
 def form():
-    return render_template('form.html')
+    return render_template('user-details-form.html')
 
 
 
@@ -154,7 +151,7 @@ def get_selected_asana():
 
 @app.route('/get-calories')
 def get_calories():
-    return jsonify(selected_asana=selected_asana,predicted_asana=predicted_asana,METs=asanaMETs[selected_asana],weight=weight)
+    return jsonify(selected_asana=selected_asana,predicted_asana=predicted_asana,METs=asanaMETs[selected_asana],weight=userDetails['weight'])
 
 @app.route('/post-user-details', methods=["POST"])
 def post_user_details():

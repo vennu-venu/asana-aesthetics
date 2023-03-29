@@ -50,3 +50,30 @@ def resize_with_padding(img, expected_size):
     padding = (pad_width, pad_height, delta_width -
                pad_width, delta_height - pad_height)
     return ImageOps.expand(img, padding)
+
+
+#To convert image to Skeleton
+mp_drawing = mp.solutions.drawing_utils
+mp_pose = mp.solutions.pose
+
+def Img2Skeleton(img):
+  with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+        
+        image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        image.flags.writeable = False
+      
+        # Make detection
+        results = pose.process(image)
+    
+        # Recolor back to BGR
+        image.flags.writeable = True
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+        #image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+        
+        
+        plot_img= np.zeros(image.shape, dtype = "uint8")
+        # Render detections
+        mp_drawing.draw_landmarks(plot_img, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
+        plot_img = cv2.resize(plot_img, (224, 224))              
+        #plt.imshow(plot_img)
+        return plot_img

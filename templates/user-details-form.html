@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+<form action="/post-user-details" method="post">
+  <div class="form_container"> 
+    <div class="form_card">
+      <div class="form_title">
+        <span class="starting_letter-2">U</span>ser Details
+      </div> 
+      <div class="form_input_div">
+        <label class="form_label">Username</label>
+        <input class="form_input" type="text" name="username" required />
+      </div>
+      <div class="form_input_div">
+        <label class="form_label">Age</label>
+        <input class="form_input" type="number" name="age" required />
+      </div>
+      <div class="form_input_div">
+        <label class="form_label">Gender</label>
+        <div class="form_radio_button">
+          <input type="radio" id="male" value="male" name="gender" />
+          <label for="male">Male</label>
+        </div>
+        <div class="form_radio_button">
+          <input type="radio" id="female" value="female" name="gender" />
+          <label for="female">Female</label>
+        </div>
+      </div>
+      <div class="form_input_div">
+        <label class="form_label">Weight</label>
+        <input class="form_input" type="number" name="weight" required />
+      </div>
+      <div>
+        <a href="asanas"><input class="form_button" type="submit" value="Submit" /></a>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

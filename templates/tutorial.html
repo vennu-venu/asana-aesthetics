@@ -1,50 +1,65 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="tutorial_row">
-  <p class="tutorial_title" id="selected-asana">{{selected_asana}} Asana</p>
-  <div class="details_card">
-    <div>
-      <div id="hours" class="time_block"></div>
-      <small id="hours-label"></small>
-    </div>
-    <div>
-      <div id="minutes" class="time_block"></div>
-      <small id="minutes-label"></small>
-    </div>
-    <div>
-      <div id="seconds" class="time_block"></div>
-      <small id="seconds-label"></small>
-    </div>
-    <div>
-      <div id="calories" class="time_block">0</div>
-      <small id="calories-label">Calories</small>
-  <button>Stop</button>
-</div>
-  </div>
-</div>
+<div id="countdown"></div>
+<div id="main">
+  <div class="tutorial_row">
+    <p class="tutorial_title" id="selected-asana">{{selected_asana}} Asana</p>
+    <div class="tutorial_container">
+      <div class="details_card">
+        <div>
+          <div id="hours" class="time_block"></div>
+          <small id="hours-label"></small>
+        </div>
+        <div>
+          <div id="minutes" class="time_block"></div>
+          <small id="minutes-label"></small>
+        </div>
+        <div>
+          <div id="seconds" class="time_block"></div>
+          <small id="seconds-label"></small>
+        </div>
+      </div>
 
-<div class="tutorial_frames">
-  <div class="tutorial_left">
-    <video
-      class="tutorial_video"
-      src="../static/img/demo.mp4"
-      controls
-      autoplay
-      muted
-      loop
-    ></video>
+      <div class="details_card">
+        <div>
+          <div id="calories" class="time_block">0</div>
+          <small id="calories-label">Calories</small>
+        </div>
+        <div>
+          <div id="calories" class="time_block">0</div>
+          <small id="calories-label">Ideal Time</small>
+        </div>
+        <div>
+          <div id="calories" class="time_block">0</div>
+          <small id="calories-label">Burning Calories</small>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="tutorial_right">
-    <img class="video_frames" src="{{ url_for('video_feed') }}" alt="" />
-    <img
-      class="video_frames"
-      src="{{ url_for('processed_video_feed') }}"
-      alt=""
-    />
-  </div>
-</div>
 
+  <div class="container">
+    <div class="tutorial_frames">
+      <div class="tutorial_left">
+        <video
+          class="tutorial_video"
+          src="../static/img/demo.mp4"
+          controls
+          autoplay
+          muted
+          loop
+        ></video>
+      </div>
+      <div class="tutorial_right">
+        <img class="video_frames" src="{{ url_for('video_feed') }}" alt="" />
+        <img
+          class="video_frames"
+          src="{{ url_for('processed_video_feed') }}"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+  <button class="stop_button" onclick="stop()">Stop Tutorial</button>
+</div>
 <script src="../static/js/main.js"></script>
-<script src="../static/js/timer.js"></script>
-<script src="../static/js/calories-fetcher.js"></script>
 {% endblock %}
