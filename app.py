@@ -1,11 +1,11 @@
-from flask import Flask, jsonify, render_template, Response, Request, stream_with_context
+from flask import Flask, jsonify, render_template, Response, Request, stream_with_context, redirect, session
 import cv2
 import numpy as np
 import mediapipe as mp
 import data_preprocessing
 import asana_classification
 from PIL import Image
-
+import time
 app = Flask(__name__)
 
 skeleton_extractor = data_preprocessing.SkeletonExtraction()
@@ -105,7 +105,6 @@ def tutorial(asana):
     global selected_asana
     selected_asana = asana
     return render_template('tutorial.html', selected_asana = asanasDetails[selected_asana]["title"])
-
 
 @app.route('/video_feed')
 def video_feed():

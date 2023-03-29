@@ -205,16 +205,23 @@ body {
   background-color: rgb(40, 142, 152);
   color: white;
 }
+.timer-area{
+  display: flex;
+  flex-direction: row;
+}
 .details_card {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   width: 400px;
   margin: 10px auto;
   text-align: center;
+}
+.card-1 {
   display: flex;
   justify-content: center;
+  align-self: center;
   gap: 20px;
 }
-.details_card div {
+.card-1 div {
   background-color: rgb(40, 142, 152);
   color: white;
   margin: 10px 0px;
@@ -227,9 +234,36 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+.card-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-self: center;
+  padding: 10px;
+  font-weight: bolder;
+  color: rgb(40, 142, 152);
+}
+.card-2 div {
+  /* background-color: rgb(40, 142, 152);
+  color: white;
+  margin: 10px 0px;
+  width: 20%;
+  font-size: 2rem;
+  border-radius: 5px;
+  padding: 10px; */
+  display: inline-flex;
+  flex-direction: initial;
+  text-align: left;
+  justify-content: left;
+  align-self: center;
+}
 small {
   font-size: 0.4em;
 }
+.ideal {
+  font-style: italic;
+}
+
 .tutorial_frames {
   display: flex;
   justify-content: center;

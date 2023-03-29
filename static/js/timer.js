@@ -91,4 +91,4 @@ function stopWatch() {
   }
 }
 
-start();
+setTimeout(start, 4000);
