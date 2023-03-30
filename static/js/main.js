@@ -173,6 +173,9 @@ const getCalories = () => {
         );
         document.getElementById("calories").innerHTML = calories;
       }
+      else {
+        audio.play()
+      }
     })
     .catch((error) => {
       console.log(error);
@@ -194,6 +197,7 @@ let milliSecondString = "";
 let secondString = "";
 let minuteString = "";
 let hourString = "";
+const audio = new Audio('../mp3/wrong_posture.mp3')
 
 document.getElementById("main").style.display = "none";
 
