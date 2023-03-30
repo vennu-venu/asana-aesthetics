@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="stats_container">
+  <div class="stats_left">
+    <h2><span class="starting_letter-2">S</span>ummary</h2>
+    <img src="../static/img/basic.png" alt="" />
+    <a href="asanas"
+      ><button class="stats_btn">Go back to Asanas</button></a
+    >
+  </div>
+  <div class="stats_card">
+    <div class="stats_detail">
+      <div class="stats_head">Name</div>
+      <div class="stats_value">{{userDetails['username']}}</div>
+    </div>
+    <div class="stats_detail">
+      <div class="stats_head">Age</div>
+      <div class="stats_value">{{userDetails['age']}}</div>
+    </div>
+    <div class="stats_detail">
+      <div class="stats_head">Weight</div>
+      <div class="stats_value">{{userDetails['weight']}} Kgs</div>
+    </div>
+    <div class="stats_detail">
+      <div class="stats_head">Time</div>
+      <div class="stats_value">{{time}}</div>
+    </div>
+    <div class="stats_detail">
+      <div class="stats_head">Calories</div>
+      <div class="stats_value">{{calories}}</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

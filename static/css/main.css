@@ -74,7 +74,8 @@ body {
   animation-duration: 1.2s;
 }
 .home_button,
-.asana_button {
+.asana_button,
+.stats_btn {
   border: none;
   padding: 15px 40px;
   font-size: 1.2rem;
@@ -367,6 +368,72 @@ small {
   transform: scale(1.05);
   transition-duration: 0.5s;
 }
+.stats_container {
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  animation: fadeInDown;
+  animation-duration: 1.2s;
+}
+.stats_summary{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 30px;
+}
+.stats_left h2 {
+  text-align: center;
+  font-size: 4em;
+  font-weight: 200;
+}
+.stats_left img {
+  width: 300px;
+}
+.stats_card {
+  width: 40%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.stats_head {
+  font-size: 0.9em;
+  color: rgb(40, 142, 152);
+  font-weight: 600;
+}
+.stats_value {
+  font-size: 2em;
+  font-weight: 200;
+}
+.stats_detail {
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  min-width: 300px;
+  border-radius: 8px;
+  width: 100%;
+}
+.stats_detail:hover {
+  background-color: rgb(40, 142, 152,0.5);
+  transition-duration: 0.5s;
+  animation: bounce;
+  animation-duration: 1.2s;
+}
+.stats_btn {
+  display: block;
+  margin: 20px auto;
+}
+.stats_btn:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+}
+.stats_left a {
+  display: block;
+  text-decoration: none;
+}
 @media (max-width: 768px) {
   .title_row,
   .asana_row {
@@ -425,5 +492,15 @@ small {
   .stop_button {
     top: 90vh;
     bottom: 25px;
+  }
+  .stats_container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .stats_card {
+    width: 90vw;
+  }
+  .stats_detail {
+    width: 100%;
   }
 }

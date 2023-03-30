@@ -7,6 +7,18 @@ function start() {
 
 function stop() {
   timer = false;
+  fetch("/post-calories-and-time", {
+    method: "POST",
+    body: JSON.stringify({
+      calories: calories,
+      time: [hourString, minuteString, secondString].join(":"),
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((data) => window.location.assign(data.url))
+    .catch((err) => console.log(err));
 }
 
 function reset() {
@@ -42,10 +54,10 @@ function stopWatch() {
       hours = hours + 1;
     }
 
-    let milliSecondString = milliSeconds;
-    let secondString = seconds;
-    let minuteString = minutes;
-    let hoursString = hours;
+    milliSecondString = milliSeconds;
+    secondString = seconds;
+    minuteString = minutes;
+    hourString = hours;
 
     if (milliSeconds < 10) {
       milliSecondString = "0" + milliSecondString;
@@ -57,7 +69,7 @@ function stopWatch() {
       minuteString = "0" + minuteString;
     }
     if (hours < 10) {
-      hoursString = "0" + hoursString;
+      hourString = "0" + hourString;
     }
 
     if (seconds === 1) {
@@ -80,12 +92,11 @@ function stopWatch() {
 
     document.getElementById("seconds").innerHTML = secondString;
     document.getElementById("minutes").innerHTML = minuteString;
-    document.getElementById("hours").innerHTML = hoursString;
+    document.getElementById("hours").innerHTML = hourString;
 
     stopWatchTimeoutId = setTimeout(stopWatch, 10);
-  }
-  else {
-    clearInterval(stopWatchTimeoutId)
+  } else {
+    clearInterval(stopWatchTimeoutId);
   }
 }
 
@@ -154,7 +165,7 @@ const getCalories = () => {
       let predicted_asana = data.predicted_asana;
       let METs = data.METs;
       if (predicted_asana == selected_asana) {
-        let calories = Number(
+        calories = Number(
           (
             parseFloat(document.getElementById("calories").innerHTML) +
             caloriesPerSec(weight, METs)
@@ -173,11 +184,16 @@ let seconds = 0;
 let minutes = 0;
 let hours = 0;
 let totalSeconds = 0;
+let calories = 0;
 let timer = false;
 let count = 4;
 let selected_asana = "";
 let predicted_asana = "";
 let timerElement = document.getElementById("countdown");
+let milliSecondString = "";
+let secondString = "";
+let minuteString = "";
+let hourString = "";
 
 document.getElementById("main").style.display = "none";
 

@@ -13,11 +13,56 @@ skeleton_extractor = data_preprocessing.SkeletonExtraction()
 
 camera = cv2.VideoCapture(0)
 
-weight = ""
 
 predicted_asana = ""
-
 selected_asana = ""
+calories = 0
+time = ""
+user_details = {
+    'username': "",
+    'age': "",
+    'gender': '',
+    'weight': 50,
+}
+asanasDetails = {
+    'downward-facing-dog': {
+        'title': "Downward Facing Dog",
+        'asana': "downward-facing-dog",
+        'imagePath': '../static/img/down_dog.png',
+        'METs':2.5
+    },
+    'goddess': {
+        'title': "Goddess",
+        'asana': "goddess",
+        'imagePath': '../static/img/goddess.png',
+        'METs':2.5
+    },
+    'plank': {
+        'title': "Plank",
+        'asana': "plank",
+        'imagePath': '../static/img/plank.png',
+        'METs':4.0
+    },
+    'tree': {
+        'title': "Tree",
+        'asana': "tree",
+        'imagePath': '../static/img/tree.png',
+        'METs':2.5
+    },
+    'warrior-2': {
+        'title': "Warrior 2",
+        'asana': "warrior-2",
+        'imagePath': '../static/img/warrior_2.png',
+        'METs':4.0
+    }
+}
+asanaMETs = {
+    'Downward Facing Dog':2.5,
+    'Goddess':2.5,
+    'Plank':4.0,
+    'Tree': 2.5,
+    'Warrior-2':4.0
+}
 
 
 def gen_frames():
@@ -60,54 +105,6 @@ def mapper(asana):
         return "Warrior 2"
     return ""
 
-userDetails = {
-    'username': "",
-    'age': "",
-    'gender': '',
-    'weight': 50,
-}
-
-asanasDetails = {
-    'downward-facing-dog': {
-        'title': "Downward Facing Dog",
-        'asana': "downward-facing-dog",
-        'imagePath': '../static/img/down_dog.png',
-        'METs':2.5
-    },
-    'goddess': {
-        'title': "Goddess",
-        'asana': "goddess",
-        'imagePath': '../static/img/goddess.png',
-        'METs':2.5
-    },
-    'plank': {
-        'title': "Plank",
-        'asana': "plank",
-        'imagePath': '../static/img/plank.png',
-        'METs':4.0
-    },
-    'tree': {
-        'title': "Tree",
-        'asana': "tree",
-        'imagePath': '../static/img/tree.png',
-        'METs':2.5
-    },
-    'warrior-2': {
-        'title': "Warrior 2",
-        'asana': "warrior-2",
-        'imagePath': '../static/img/warrior_2.png',
-        'METs':4.0
-    }
-}
-
-asanaMETs = {
-    'Downward Facing Dog':2.5,
-    'Goddess':2.5,
-    'Plank':4.0,
-    'Tree': 2.5,
-    'Warrior-2':4.0
-}
-
 @app.route('/home')
 def index():
     return render_template('index.html', asanas=asanasDetails)
@@ -121,12 +118,15 @@ def form():
     return render_template('user-details-form.html')
 
 
-
 @app.route('/tutorial/<asana>')
 def tutorial(asana):
     global selected_asana
     selected_asana = asanasDetails[asana]['title']
     return render_template('tutorial.html', selected_asana=selected_asana)
+
+@app.route('/summary')
+def summary():
+    return render_template('summary.html', calories=calories, time=time, userDetails=user_details)
 
 
 @app.route('/video_feed')
@@ -151,18 +151,26 @@ def get_selected_asana():
 
 @app.route('/get-calories')
 def get_calories():
-    return jsonify(selected_asana=selected_asana,predicted_asana=predicted_asana,METs=asanaMETs[selected_asana],weight=userDetails['weight'])
+    return jsonify(selected_asana=selected_asana,predicted_asana=predicted_asana,METs=asanaMETs[selected_asana],weight=user_details['weight'])
 
 @app.route('/post-user-details', methods=["POST"])
 def post_user_details():
-    global weight 
-    weight = request.form['weight']
-    global userDetails
-    userDetails['username'] = request.form['username']
-    userDetails['age'] = request.form['age']
-    userDetails['gender'] = request.form['gender']
-    userDetails['weight'] = request.form['weight']
+    global user_details
+    user_details['username'] = request.form['username']
+    user_details['age'] = request.form['age']
+    user_details['gender'] = request.form['gender']
+    user_details['weight'] = request.form['weight']
     return redirect("/asanas")
+
+@app.route('/post-calories-and-time', methods=["POST"])
+def post_calories_and_time():
+    data = request.get_json()
+    global calories
+    calories = data["calories"]
+    global time
+    time = data["time"]
+    return redirect("/summary")
+
 
 if __name__ == '__main__':
     app.run()
