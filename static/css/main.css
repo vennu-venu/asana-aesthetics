@@ -376,7 +376,7 @@ small {
   animation: fadeInDown;
   animation-duration: 1.2s;
 }
-.stats_summary{
+.stats_summary {
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -402,7 +402,7 @@ small {
 }
 .stats_head {
   font-size: 0.9em;
-  color: rgb(40, 142, 152);
+  color: rgb(24, 86, 92);
   font-weight: 600;
 }
 .stats_value {
@@ -415,12 +415,11 @@ small {
   min-width: 300px;
   border-radius: 8px;
   width: 100%;
+  background-color: rgb(40, 142, 152, 0.5);
 }
 .stats_detail:hover {
-  background-color: rgb(40, 142, 152,0.5);
+  background-color: rgb(40, 142, 152, 0.8);
   transition-duration: 0.5s;
-  animation: bounce;
-  animation-duration: 1.2s;
 }
 .stats_btn {
   display: block;
