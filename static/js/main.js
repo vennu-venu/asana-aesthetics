@@ -111,6 +111,8 @@ const countdown = () => {
   }
 };
 
+
+
 const evaluate = () => {
   fetch("/get-selected-asana")
     .then((response) => {
@@ -164,6 +166,12 @@ const getCalories = () => {
       let weight = data.weight;
       let predicted_asana = data.predicted_asana;
       let METs = data.METs;
+      document.getElementById("ideal_time").innerHTML = "<span>"+asanaDurationInSec[selected_asana] + "<small>Sec</small></span>";
+      document.getElementById("ideal_calories_burnt").innerHTML = Number(
+          caloriesPerSec(weight, METs)*asanaDurationInSec[selected_asana]
+        ).toFixed(2) ;
+
+
       if (predicted_asana == selected_asana) {
         calories = Number(
           (
@@ -178,6 +186,14 @@ const getCalories = () => {
       console.log(error);
     });
 };
+
+asanaDurationInSec = {
+  'Downward Facing Dog':30,
+  'Goddess':60,
+  'Plank':30,
+  'Tree': 60,
+  'Warrior-2':60
+}
 
 let milliSeconds = 0;
 let seconds = 0;
@@ -194,6 +210,7 @@ let milliSecondString = "";
 let secondString = "";
 let minuteString = "";
 let hourString = "";
+
 
 document.getElementById("main").style.display = "none";
 
