@@ -29,30 +29,35 @@ asanasDetails = {
         'title': "Downward Facing Dog",
         'asana': "downward-facing-dog",
         'imagePath': '../static/img/down_dog.png',
+        'videoPath': '../static/mp4/Downward_Dog.mp4',
         'METs':2.5
     },
     'goddess': {
         'title': "Goddess",
         'asana': "goddess",
         'imagePath': '../static/img/goddess.png',
+        'videoPath': '../static/mp4/Goddess.mp4',
         'METs':2.5
     },
     'plank': {
         'title': "Plank",
         'asana': "plank",
         'imagePath': '../static/img/plank.png',
+        'videoPath': '../static/mp4/Plank.mp4',
         'METs':4.0
     },
     'tree': {
         'title': "Tree",
         'asana': "tree",
         'imagePath': '../static/img/tree.png',
+        'videoPath': '../static/mp4/Tree.mp4',
         'METs':2.5
     },
     'warrior-2': {
         'title': "Warrior 2",
         'asana': "warrior-2",
         'imagePath': '../static/img/warrior_2.png',
+        'videoPath': '../static/mp4/Warrior_2.mp4',
         'METs':4.0
     }
 }
@@ -122,7 +127,7 @@ def form():
 def tutorial(asana):
     global selected_asana
     selected_asana = asanasDetails[asana]['title']
-    return render_template('tutorial.html', selected_asana=selected_asana)
+    return render_template('tutorial.html', selected_asana=selected_asana, video_path = asanasDetails[asana]['videoPath'])
 
 @app.route('/summary')
 def summary():
